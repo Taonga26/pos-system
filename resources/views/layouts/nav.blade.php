@@ -108,11 +108,34 @@
                 </ul>
             </div>
         </li>
+        <hr>
         <li>
-            <a href="{{ route('admin.index') }}" class="nav-link text-white {{ request()->routeIs('admin.index') ? 'active bg-primary' : '' }}">
+            <a href="#adminMenu" class="nav-link dropdown-toggle text-white" data-bs-toggle="collapse" data-bs-auto-close="false" aria-expanded="{{ request()->routeIs(['analytics.*', 'payments.*']) ? 'true' : 'false' }}">
                 <i class="fas fa-chart-line me-2"></i>
-                Admin Dashboard
+                Admin
             </a>
+            <div class="collapse {{ request()->routeIs(['admin.*', 'activity.*']) ? 'show' : '' }}" id="adminMenu">
+                <ul class="nav flex-column ms-3">
+                    <li>
+                        <a href="{{ route('admin.index') }}" class="nav-link text-white {{ request()->routeIs('admin.index') ? 'active bg-primary' : '' }}">
+                            <i class="fas fa-chart-line me-2"></i>
+                            Admin Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('activity.index') }}" class="nav-link text-white {{ request()->routeIs('activity.index') ? 'active bg-primary' : '' }}">
+                            <i class="fas fa-history me-2"></i>
+                            Activity Logs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="nav-link text-white">
+                            <i class="fas fa-chart-bar me-2"></i>
+                            User Accounts
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
     </ul>
 

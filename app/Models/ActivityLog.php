@@ -11,7 +11,7 @@ class ActivityLog extends Model
         'action',
         'module',
         'record_id',
-        'descriptioin'
+        'description'
     ];
 
     public function user()

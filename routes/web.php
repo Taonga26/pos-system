@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
@@ -65,6 +66,8 @@ Route::middleware(['auth','role:Admin'])->group(function () {
     Route::resource('admin', AdminController::class);
 
     Route::post('/register', [AuthController::class, 'register']);
+
+    Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity.index');
 
 });
 

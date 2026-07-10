@@ -115,16 +115,25 @@
                             </span>
 
                         </td>
+                        @foreach ($onlineUsers as $onlineUser)
+                            <td>
+                           @if ($onlineUser == $user)
+                                <span class="badge bg-success">
 
-                        <td>
-                           
-                            <span class="badge bg-success">
+                                    Active
 
-                                Active
+                                </span>
+                            @else
+                                <span class="badge bg-dark">
 
-                            </span>
+                                    Not Active
 
-                        </td>
+                                </span>                        
+                           @endif
+
+                            </td>
+                        @endforeach
+                        
 
                     </tr>
 
@@ -139,6 +148,67 @@
         </div>
 
     </div>
+
+    <div class="card shadow mt-4">
+
+        <div class="card-header">
+
+            Recent Activity Logs
+
+        </div>
+
+        <div class="card-body">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Module</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($logs as $log)
+                        <tr>
+                            <td>
+                                {{ $log->created_at->format('d M Y H:i') }}
+                            </td>
+                            <td>
+                                @if($log->user)
+                                    {{ $log->user->employee->first_name }}
+                                    {{ $log->user->employee->last_name }}
+                                @else
+                                    <span class="text-muted">
+                                        Deleted user
+                                    </span>
+                                @endif    
+                            </td>
+                            <td>
+                                <span>
+                                    {{ $log->action }}
+                                </span>
+                            </td>
+                            <td>
+                                {{ $log->module }}
+                            </td>
+                            <td>
+                                {{ $log->description }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                No Activity Found
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
 
 </div>
 

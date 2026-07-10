@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,12 @@ class AuthController extends Controller
 
         User::create($incomingFields);
 
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'Regisraion',
+            'module' => 'Authentication',
+            'description' => 'Created new user'
+        ]);
         return redirect('admin.index')->with('Success', 'User created successfully');
         
     }
@@ -31,6 +38,14 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $incomingFields['loginemail'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
+
+            ActivityLog::create([
+                'user_id' => auth()->id(),
+                'action' => 'Login',
+                'module' => 'Authentication',
+                'description' => 'Logged into the system',
+            ]);
+
             return redirect('/dashboard');
         }
 
@@ -40,6 +55,12 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
+        ActivityLog::create([
+                'user_id' => auth()->id(),
+                'action' => 'Log out',
+                'module' => 'Authentication',
+                'description' => 'Logged out of system',
+        ]);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
