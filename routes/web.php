@@ -14,6 +14,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -61,13 +62,17 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::middleware(['auth','role:Admin'])->group(function () {
+Route::middleware(['auth','role:Admin'])->prefix('admin')->group(function () {
 
-    Route::resource('admin', AdminController::class);
+    Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
+
+    Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
 
     Route::post('/register', [AuthController::class, 'register']);
 
     Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity.index');
+
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users');
 
 });
 

@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index()
     {
 
-        $users = User::with('employee')->latest()->paginate(10);
+        $users = User::with('employee')->latest()->take(5)->get();
         $employees = Employee::count();
         $products = Product::count();
         $orders = Order::count();

@@ -129,7 +129,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="nav-link text-white">
+                        <a href="{{ route('admin.users') }}" class="nav-link text-white">
                             <i class="fas fa-chart-bar me-2"></i>
                             User Accounts
                         </a>

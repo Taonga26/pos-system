@@ -4,41 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     //
-    public function register(Request $request){
-        $incomingFields = $request->validate([
-            'employee_id' => 'required|exists:employees,id',
-            'email' => 'required|email',
-            'password' => 'required',
-            'role'=> 'required|in:Manager, Cashier, Admin'
-        ]);
+    public function index()
+    {
+        $users = User::with('employee')->latest()->paginate(10);
 
-        $incomingFields['password'] = bcrypt($incomingFields['password']);
+        $activeUserIds =DB::table('sessions')
+        ->whereNotNull('user_id')
+        ->where('last_activity', '>=', now()->subMinutes(5)->timestamp)
+        ->pluck('user_id');
 
-        $user = User::create($incomingFields);
-        auth()->guard()->login($user);
+        $onlineUsers =User::with('employee')->whereIn('id', $activeUserIds)->get();
 
-        return redirect('/');
-        
+        return view('admin.users', compact('users','onlineUsers'));
     }
 
-    public function login(Request $request){
-        $incomingFields = $request->validate([
-            'loginemail' => 'required|email',
-            'loginpassword' => 'required'
-        ]);
 
-        if (auth()->guard()->attempt(['email' => $incomingFields['loginemail'], 'password' => $incomingFields['loginpassword']])) {
-            $request->session()->regenerate();
-            return redirect('/');
-        }
-    }
+    public function force_logout(){}
 
-    public function logout(){
-        auth()->guard()->logout();
-        return redirect('/');
+
+    public function destroy(){
+
     }
 }

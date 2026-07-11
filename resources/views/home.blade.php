@@ -7,7 +7,7 @@
 
             <img src="{{ asset('images/simon-kadula--gkndM1GvSA-unsplash.jpg') }}" alt="" class="col-md-6 card-img w-50" style="height: 100vh; border-radius: .5rem;">
 
-            <div class="card shadow w-100 mx-auto" id="loginForm">
+            <div class="card shadow w-100 h-100 mx-auto" id="loginForm">
                 
                 <div class="card-body d-flex flex-column align-items-center justify-content-center " style="background-color: aliceblue">
 
@@ -23,12 +23,12 @@
                         <div class="column g-3 d-flex flex-column align-items-center" style="width: 400px">
 
                             <div class="col-md-10">
-                                <label for="loginemail" class="form-label fs-6">Email</label>
+                                <label for="loginemail" class="form-label fs-6 mb-0">Email</label>
                                 <input type="email" name="loginemail" id="loginemail" class="form-control rounded-pill " placeholder="Enter email" style="border: 1px solid rgb(48, 46, 46)" required>
                             </div>
 
-                            <div class="col-10 mt-2">
-                                <label for="loginpassword" class="form-label fs-6">password</label>
+                            <div class="col-10 mt-3">
+                                <label for="loginpassword" class="form-label fs-6 mb-0">password</label>
                                 <input type="password" name="loginpassword" id="loginpassword" class="form-control rounded-pill" rows="3" placeholder="Enter password" style="border: 1px solid rgb(48, 46, 46)" required></input>
                             </div>
                         </div>

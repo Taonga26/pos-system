@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold">Add New user</h3>
-        <a href="{{ route('admin.index') }}" class="btn btn-outline-secondary">
+        <a href="#" class="btn btn-outline-secondary" onclick="history.back()">
             <i class="fas fa-arrow-left me-2"></i>Back
         </a>
     </div>

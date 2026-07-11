@@ -54,7 +54,7 @@
 
             <i class="bi bi-person-badge"></i>
 
-            Create Login
+            Create user
 
         </a>
 
@@ -142,8 +142,6 @@
                 </tbody>
 
             </table>
-
-            {{ $users->links() }}
 
         </div>
 
