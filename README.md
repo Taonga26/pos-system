@@ -8,7 +8,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge\&logo=mysql)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-**A modern Laravel Point of Sale (POS) system designed for bakeries and small retail businesses.**
+**A modern Laravel Inventory and Sales Management System designed for bakeries and small retail businesses.**
 
 Built with Laravel, Bootstrap, JavaScript, and MySQL.
 
