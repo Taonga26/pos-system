@@ -364,18 +364,6 @@ php artisan migrate
 php artisan db:seed
 ```
 
----
-
-## Start Development Server
-
-```bash
-php artisan serve
-```
-
-Application:
-
-```text
-http://127.0.0.1:8000
 ```
 
 ---
